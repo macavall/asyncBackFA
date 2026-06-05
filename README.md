@@ -383,6 +383,16 @@ Example response:
 
 Replace the job ID with the value returned by `startjob`.
 
+### PowerShell
+
+Start a job and check its status using PowerShell:
+
+```powershell
+$start = Invoke-RestMethod -Method Post -Uri http://localhost:7071/api/startjob
+$start | ConvertTo-Json
+Invoke-RestMethod -Uri "http://localhost:7071/api/jobstatus/$($start.jobId)" | ConvertTo-Json
+```
+
 ## Notes for production
 
 - Replace in-memory storage with durable persistence (SQL/Cosmos DB/Redis/etc.).
